@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
 
+:root {
+    touch-action: pan-x pan-y;
+    height: 100%
+}
+
 body {
     background-color: #5463FF;
     font-family: 'Delicious Handrawn', cursive;
@@ -25,8 +30,9 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #FF1818;
-    height: 800px;
-    width: 80%;
+    /* width: 50%; */
+    min-width: 50%;
+    height: 80%;
     margin-top: 50px;
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
@@ -45,11 +51,35 @@ body {
 }
 
 .grid {
+    display: flex;
     background-color: #ECECEC;
-    height: 600px;
-    width: 80%;
+    height: 640px;
+    width: 640px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+    border-style: solid;
+    border-width: 1px;
+    margin: 10px;
+}
+
+.gridColumn {
+    flex: 1;
+}
+
+.cellsRegular {
+    width: 18px;
+    height: 18px;
+    border: 1px solid black;
+}
+
+.cellsRegular:hover {
+    background-color: gray;
+}
+
+.cellsLarge {
+    width: 8px;
+    height: 8px;
+    border: 1px solid black;
 }
 
 .controlsContainer {
@@ -81,31 +111,27 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-left: 48px;
+    margin-left: 32px;
     gap: 9px;
-    margin-bottom: 42px;
+    margin-bottom: 62px;
 }
 
 .sizeControlLarge {
     background-color: #FFC300;
     height: 18px;
     width: 18px;
+    border-color: #ebb000;
+    border-style: solid;
+    border-width: 0.5px;
 }
 
 .sizeControlSmall {
     background-color: #FFC300;
     height: 12px;
     width: 12px;
-}
-
-.sizeControler {
-    background-color: #FFC300;
-    color: black;
-    height: 75px;
-    width: 75px;
-    border-radius: 50px;
-    font-weight: 500;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    border-color: #ebb000;
+    border-style: solid;
+    border-width: 0.5px;
 }
 
 .colorControlContainer {
@@ -113,31 +139,47 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-right: 48px;
+    margin-right: 32px;
     gap: 9px;
-    margin-bottom: 42px;
+    margin-bottom: 62px;
 }
 
 .colorGrey {
     background-color: #868686;
     height: 16px;
     width: 16px;
+    border-color: #5e5d5d;
+    border-style: solid;
+    border-width: 0.5px;
 }
 
 .colors {
     background-color: #00ff95;
     height: 16px;
     width: 16px;
+    border-color: #00a560;
+    border-style: solid;
+    border-width: 0.5px;
 }
 
-.colorControl {
-    background-color: #FFC300;
-    color: black;
+.buttonSize {
     height: 75px;
     width: 75px;
-    border-radius: 50px;
-    font-weight: 500;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.buttonSize:hover {
+    filter: brightness(200%);
+    cursor: pointer;
+}
+
+.buttonColor {
+    height: 75px;
+    width: 75px;
+}
+
+.buttonColor:hover {
+    filter: brightness(200%);
+    cursor: pointer;
 }
 
 .footerContainer {
