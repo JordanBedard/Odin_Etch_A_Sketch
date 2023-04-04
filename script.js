@@ -6,27 +6,38 @@ let gridSizeInitial = getGridSize(isNormalGridSize);
 
 initGrid(gridSizeInitial.column, gridSizeInitial.row, gridSizeInitial.cellSize);
 
+// Function to Initialize the Grid 
 function initGrid(column, row, cellSize) {
     gridDisplay(column, row, cellSize);
     setUpEventListenersCells();
 }
 
-// Click Size Button and Click Size Button Handle
+// Event Listener - Click Size Button - Button handle
 let sizeButton = document.querySelector(".buttonSize")
 sizeButton.addEventListener("click", handleSizeButton);
 
 function handleSizeButton() {
-    rotateButton(".buttonSize");
+    rotateButton();
     switchGridSize();
     let gridSize = getGridSize(isNormalGridSize);
     initGrid(gridSize.column, gridSize.row, gridSize.cellSize);
+}
+
+// Event Listener - Click Color Button - Button handle
+let colorButton = document.querySelector(".buttonColor")
+colorButton.addEventListener("click", handleColorButton);
+
+let isColorGray = true;
+
+function handleColorButton() {
+    rotateColorButton();
+    isColorGray = !isColorGray;
 }
 
 // Switch between different Grid Sizes
 function switchGridSize() {
     isNormalGridSize = !isNormalGridSize;
 }
-
 function getGridSize(isSmall) {
     let gridSize = {};
     if (isSmall) {
@@ -39,31 +50,6 @@ function getGridSize(isSmall) {
         gridSize.cellSize = 8;
     }
     return gridSize;
-}
-
-// Click Color Button and Click Button Handle
-let colorButton = document.querySelector(".buttonColor")
-colorButton.addEventListener("click", handleColorButton);
-
-let isColorGray = true;
-
-function handleColorButton() {
-    rotateButton(".buttonColor");
-    isColorGray = !isColorGray;
-}
-
-// Function to rotate Buttons when clicked
-let isRotated = false;
-
-function rotateButton(buttonSelected) {
-    let buttonRotate = document.querySelector(buttonSelected)
-    if (isRotated) {
-        buttonRotate.style.transform = "rotate(0deg)";
-        isRotated = false;
-    } else {
-        buttonRotate.style.transform = "rotate(180deg)";
-        isRotated = true;
-    }
 }
 
 // Function to Display Grid based on Size Input
@@ -84,6 +70,32 @@ function gridDisplay(column, row, cellSize) {
             gridColumn.appendChild(cell);
         }
         gridContainer.appendChild(gridColumn);
+    }
+}
+
+// Function to rotate Buttons when clicked
+let isSizeRotated = false;
+let isColorRotated = false;
+
+function rotateButton() {
+    let buttonRotate = document.querySelector(".buttonSize");
+    if (isSizeRotated) {
+        buttonRotate.style.transform = "rotate(0deg)";
+        isSizeRotated = false;
+    } else {
+        buttonRotate.style.transform = "rotate(180deg)";
+        isSizeRotated = true;
+    }
+}
+
+function rotateColorButton() {
+    let buttonRotate = document.querySelector(".buttonColor")
+    if (isColorRotated) {
+        buttonRotate.style.transform = "rotate(0deg)";
+        isColorRotated = false;
+    } else {
+        buttonRotate.style.transform = "rotate(180deg)";
+        isColorRotated = true;
     }
 }
 

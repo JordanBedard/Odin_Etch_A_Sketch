@@ -1,4 +1,4 @@
-let colorArray = ["aqua", "springgreen", "cyan", "chartreuse", "yellow", "magenta", "orangered", "deeppink"];
+let colorArray = ["Red", "SpringGreen", "DeepSkyBlue", "Aquamarine", "Yellow", "Cyan", "Purple", "OrangeRed"];
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);

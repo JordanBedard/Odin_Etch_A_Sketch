@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
 
-:root {
-    touch-action: pan-x pan-y;
-    height: 100%
-}
-
 body {
     background-color: #5463FF;
     font-family: 'Delicious Handrawn', cursive;
@@ -23,10 +18,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #FF1818;
-    min-width: 50%;
-    height: 80%;
-    margin-top: 50px;
+    background-color: #ff1818d1;
+    width: 950px;
+    height: 850px;
+    margin-top: 25px;
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
@@ -53,6 +48,7 @@ body {
     border-style: solid;
     border-width: 1px;
     margin: 10px;
+    overflow: hidden;
 }
 
 .gridColumn {
@@ -60,7 +56,7 @@ body {
 }
 
 .cell {
-    border: 1px solid black;
+    border: 0.5px solid black;
 }
 
 .controlsContainer {
@@ -69,8 +65,9 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 100px;
-    width: 100%;
+    width: 950px;
     user-select: none;
+    margin-bottom: 20px;
 }
 
 .eraseControl {
@@ -94,8 +91,8 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-left: 32px;
-    gap: 9px;
-    margin-bottom: 62px;
+    gap: 6px;
+    margin-bottom: 48px;
 }
 
 .sizeControlLarge {
@@ -122,8 +119,8 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-right: 32px;
-    gap: 9px;
-    margin-bottom: 62px;
+    gap: 6px;
+    margin-bottom: 48px;
 }
 
 .colorGrey {
