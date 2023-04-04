@@ -11,12 +11,6 @@ body {
     block-size: auto;
 }
 
-/* div {
-    border-width: 5px;
-    border-style: solid;
-    border-color: black;
-} */
-
 .pageContainer {
     display: flex;
     flex-direction: column;
@@ -30,7 +24,6 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #FF1818;
-    /* width: 50%; */
     min-width: 50%;
     height: 80%;
     margin-top: 50px;
@@ -66,19 +59,7 @@ body {
     flex: 1;
 }
 
-.cellsRegular {
-    width: 18px;
-    height: 18px;
-    border: 1px solid black;
-}
-
-.cellsRegular:hover {
-    background-color: gray;
-}
-
-.cellsLarge {
-    width: 8px;
-    height: 8px;
+.cell {
     border: 1px solid black;
 }
 
@@ -89,6 +70,7 @@ body {
     align-items: center;
     height: 100px;
     width: 100%;
+    user-select: none;
 }
 
 .eraseControl {

@@ -1,44 +1,55 @@
+import { getRandomColor } from "./util.js";
+
 // Initialize Grid Size to Normal
-let gridSizeNormal = true;
-let gridSizeInitial = gridSwitch();
-gridDisplay(gridSizeInitial.column, gridSizeInitial.row, gridSizeInitial.cellClass);
+let isNormalGridSize = true;
+let gridSizeInitial = getGridSize(isNormalGridSize);
+
+initGrid(gridSizeInitial.column, gridSizeInitial.row, gridSizeInitial.cellSize);
+
+function initGrid(column, row, cellSize) {
+    gridDisplay(column, row, cellSize);
+    setUpEventListenersCells();
+}
 
 // Click Size Button and Click Size Button Handle
 let sizeButton = document.querySelector(".buttonSize")
-sizeButton.addEventListener("click", function () {
-    handleSizeButton();
-});
+sizeButton.addEventListener("click", handleSizeButton);
 
 function handleSizeButton() {
     rotateButton(".buttonSize");
-    let gridSize = gridSwitch();
-    gridDisplay(gridSize.column, gridSize.row, gridSize.cellClass);
+    switchGridSize();
+    let gridSize = getGridSize(isNormalGridSize);
+    initGrid(gridSize.column, gridSize.row, gridSize.cellSize);
 }
 
-// Function to switch between different Grid Sizes
-function gridSwitch() {
+// Switch between different Grid Sizes
+function switchGridSize() {
+    isNormalGridSize = !isNormalGridSize;
+}
+
+function getGridSize(isSmall) {
     let gridSize = {};
-    if (gridSizeNormal) {
+    if (isSmall) {
         gridSize.column = 32;
         gridSize.row = 32;
-        gridSize.cellClass = "cellsRegular";
+        gridSize.cellSize = 18;
     } else {
         gridSize.column = 64;
         gridSize.row = 64;
-        gridSize.cellClass = "cellsLarge";
+        gridSize.cellSize = 8;
     }
-    gridSizeNormal = !gridSizeNormal;
     return gridSize;
 }
 
-// Click Color Button
+// Click Color Button and Click Button Handle
 let colorButton = document.querySelector(".buttonColor")
-colorButton.addEventListener("click", function () {
-    handleColorButton();
-});
+colorButton.addEventListener("click", handleColorButton);
+
+let isColorGray = true;
 
 function handleColorButton() {
     rotateButton(".buttonColor");
+    isColorGray = !isColorGray;
 }
 
 // Function to rotate Buttons when clicked
@@ -56,7 +67,7 @@ function rotateButton(buttonSelected) {
 }
 
 // Function to Display Grid based on Size Input
-function gridDisplay(column, row, className) {
+function gridDisplay(column, row, cellSize) {
     // Target DOM Element
     let gridContainer = document.querySelector(".grid");
     gridContainer.innerHTML = '';
@@ -66,22 +77,39 @@ function gridDisplay(column, row, className) {
         let gridColumn = document.createElement("div");
         gridColumn.className = "gridColumn";
         for (let j = 0; j < row; j++) {
-            let cells = document.createElement("div");
-            cells.classList = className;
-            gridColumn.appendChild(cells);
+            let cell = document.createElement("div");
+            cell.classList = "cell";
+            cell.style.width = `${cellSize}px`;
+            cell.style.height = `${cellSize}px`;
+            gridColumn.appendChild(cell);
         }
         gridContainer.appendChild(gridColumn);
     }
 }
 
-// Function Change Color of Grid Cells
+// Function Set Up Event Listener to Change Background Colors
+function setUpEventListenersCells() {
+    let changeColorCells = document.querySelectorAll(".cell");
 
-// // Parameters - class Name // Color?
-// function changeCellColor() {
-//     let regularCellColor = document.querySelector(".cellsRegular");
+    changeColorCells.forEach((cell) => {
+        cell.addEventListener('mouseover', changeBackgroundColors);
+    });
 
-// }
+    function changeBackgroundColors() {
+        if (isColorGray === true) {
+            this.style.backgroundColor = "gray"
+        } else {
+            let coolRandomColor = getRandomColor();
+            this.style.backgroundColor = coolRandomColor;
+        }
+    }
+}
 
-// Color change -> Array with colors + random math for choosing key -> passing value in function when click cell
+//  Erase Button
+let eraseButton = document.querySelector(".eraseControl");
+eraseButton.addEventListener('click', eraseGrid);
 
-// When Erase Clicked -> Change class -> Cell Background-Color = #CECEC
+function eraseGrid() {
+    let gridSize = getGridSize(isNormalGridSize);
+    initGrid(gridSize.column, gridSize.row, gridSize.cellSize);
+}
